@@ -57,10 +57,13 @@
             }
             .content{
                 flex: 1;
-                padding: 15px;
+                padding: 15px
             }
             .interest header{
-               font-size: 1.25em; 
+               font-size: 1.25em;
+            }
+            #portfolio-header{
+                padding-left: 7px;
             }
             /* portfolio styles */
             #portfolio {

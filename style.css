@@ -9,7 +9,7 @@
                 font-weight: bold;
                 
             }
-            .all-contents {
+            #all-contents {
                 max-width: 800px;
                 margin: auto;
             }
