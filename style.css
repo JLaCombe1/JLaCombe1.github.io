@@ -2,12 +2,11 @@
                 background: #0074D9;
                 color: rgb(45,45,45);
                 padding: 10px;
-                font-family: arial;
+                font-family: arial
             }
             header {
                 font-size: 1.5em;
                 font-weight: bold;
-                
             }
             #all-contents {
                 max-width: 800px;
@@ -21,6 +20,9 @@
                 display: flex;
                 padding: 10px;
                 border-radius: 893px;
+                border-style: solid;
+                border-color: rgb(0,0,0);
+                border-width: 3px;
             }
             nav header{
                 display: flex;
@@ -46,6 +48,9 @@
                 display: flex;
                 border-radius: 20px;
                 margin-top: 20px;
+                border-style: solid;
+                border-color: rgb(0,0,0);
+                border-width: 3px;
             }
             .sidebar{
                 margin-right: 25px;
