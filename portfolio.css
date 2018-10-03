@@ -9,7 +9,7 @@
                 font-weight: bold;
                 
             }
-            .all-contents {
+            #all-contents {
                 max-width: 800px;
                 margin: auto;
             }
@@ -21,6 +21,9 @@
                 display: flex;
                 padding: 10px;
                 border-radius: 893px;
+                border-style: solid;
+                border-color: rgb(0,0,0);
+                border-width: 3px;
             }
             nav header{
                 display: flex;
@@ -46,6 +49,9 @@
                 display: flex;
                 border-radius: 20px;
                 margin-top: 20px;
+                border-style: solid;
+                border-color: rgb(0,0,0);
+                border-width: 3px;
             }
             .sidebar{
                 margin-right: 25px;
@@ -72,17 +78,18 @@
             }
             
             #portfolio li {
-                background: #fff;
+                background: rgb(245,238,219);
                 padding: 10px;
                 border-radius: 10px;
                 margin-bottom: 10px;
             }
             
             #portfolio li:hover {
-                background: #eee;
+                background: rgb(239,80,41);
             } 
-            
+ 
             #portfolio a {
                 text-decoration: none;
-                color: #454545;
+                color: rgb(0,0,0);
+                font-family: arial;
             }
