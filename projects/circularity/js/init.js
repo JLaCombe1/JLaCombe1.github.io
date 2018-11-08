@@ -29,6 +29,8 @@ var init = function (window) {
             physikz.addRandomVelocity(circle, canvas);
             view.addChild(circle);
             circles.push(circle);
+            circle.velocityX += Math.random() * 3.5;
+            circle.velocityY += Math.random() * 3.5;
         };
         
         
@@ -37,7 +39,7 @@ var init = function (window) {
       
 
         // TODO 7 : Create a Loop to call drawCircle 100 times
-        for (var counters = 0; counters < 800; counters++) {
+        for (var counters = 0; counters < 550; counters++) {
             drawCircle();
         }
     
@@ -51,27 +53,28 @@ var init = function (window) {
             // if the circle has gone out the right side of the screen then place it off-screen left
             if ( circle.x > canvas.width + circle.radius ) {
                 circle.x = 0 - circle.radius;
+                //circle.velocityX = -circle.velocityX;
             } 
             // TODO 5a) if the circle has gone out of the left side of the screen then place it off-screen right
             else if ( circle.x < 0 - circle.radius ) {
                 circle.x = canvas.width + circle.radius;
+                //circle.velocityX = -circle.velocityX;
             } 
             // TODO 5b) if the circle has gone out of the top side of the screen then place it off-screen bottom
             if ( circle.y < 0 - circle.radius ) {
                 circle.y = canvas.height + circle.radius;
+                //circle.velocityY = -circle.velocityY;
             }
             // TODO 5c) if the circle has gone out of the bottom side of the screen then place it off-screen top 
             else if ( circle.y > canvas.height + circle.radius) {
                 circle.y = 0 - circle.radius;
+                //circle.velocityY = -circle.velocityY;
             }
             // YOUR TODO 5 CODE ENDS HERE //////////////////////////
-        }
+        };
     
         var update = function() {
             // TODO 4 : Update the circle's position //
-            for (var i = 0; i < circles.length; i++) {
-                physikz.updatePosition(circles[i]);
-            }
             // TODO 6 : Call checkCircleBounds on your circles.
             for (var i = 0; i < circles.length; i++) {
                 runner.checkCircleBounds(circles[i]);
