@@ -22,6 +22,7 @@ var init = function (window) {
         // TODO 1 : Declare and initialize our variables //
         var circle;
         var circles = [];
+        var directionNumber = Math.random() * 1;
 
         // TODO 2 : Create a function that draws a circle  //
         var drawCircle = function() {
@@ -29,8 +30,11 @@ var init = function (window) {
             physikz.addRandomVelocity(circle, canvas);
             view.addChild(circle);
             circles.push(circle);
-            circle.velocityX += Math.random() * 3.5;
-            circle.velocityY += Math.random() * 3.5;
+            
+            // increase velocity by a random number from 0 -> 3.5
+            circle.velocityX *= Math.random() * 3.5;
+            circle.velocityY *= Math.random() * 3.5;
+            
         };
         
         
