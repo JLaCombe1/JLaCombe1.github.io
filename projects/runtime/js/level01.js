@@ -20,7 +20,9 @@ var level01 = function(window) {
                 { type: 'flyingSpike', x: 500, y: groundY - 105 },
                 { type: 'flyingSpike', x: 800, y: groundY - 105 },
                 { type: 'flyingSpike', x: 1100, y: groundY - 30 },
-                { type: 'beartrap', x: 1400, y: groundY }
+                { type: 'beartrap', x: 1400, y: groundY },
+                { type: 'enemy', x: 650, y: groundY - 50},
+                { type: 'reward', x: 1800, y: groundY - 150}
             ]
         };
         window.levelData = levelData;
@@ -41,6 +43,12 @@ var level01 = function(window) {
             }
             if (levelData.gameItems[i].type === 'beartrap') {
                 createBearTrap(levelData.gameItems[i].x, levelData.gameItems[i].y)
+            }
+            if (levelData.gameItems[i].type === 'enemy') {
+                createEnemy(levelData.gameItems[i].x, levelData.gameItems[i].y)
+            }
+            if (levelData.gameItems[i].type === 'reward') {
+                createReward(levelData.gameItems[i].x, levelData.gameItems[i].y)
             }
         }
 
@@ -72,10 +80,10 @@ var level01 = function(window) {
         }
 
 
-        var enemy = game.createGameItem('enemy', 25);
 
         function createEnemy(x, y) {
 
+            var enemy = game.createGameItem('enemy', 25);
             var enemyImage = draw.bitmap('img/axe.png')
             enemy.addChild(enemyImage);
             enemy.x = x;
@@ -83,20 +91,21 @@ var level01 = function(window) {
             game.addGameItem(enemy);
             enemy.velocityX = -1;
             enemy.rotationalVelocity = -10;
+            enemy.onPlayerCollision = function() {
+                console.log('The enemy has hit Halle');
+                game.changeIntegrity(-20);
+    
+            }
+    
+            enemy.onProjectileCollision = function() {
+                console.log('Halle has hit the enemy');
+                game.increaseScore(100);
+                enemy.fadeOut();
+            }
         }
-        createEnemy(650, groundY - 50);
+        
+        
 
-        enemy.onPlayerCollision = function() {
-            console.log('The enemy has hit Halle');
-            game.changeIntegrity(-20);
-
-        }
-
-        enemy.onProjectileCollision = function() {
-            console.log('Halle has hit the enemy');
-            game.increaseScore(100);
-            enemy.fadeOut();
-        }
 
         
 
@@ -115,7 +124,7 @@ var level01 = function(window) {
                 console.log('Halle got the reward');
             };
         }
-        createReward(1800, groundY - 150);
+        
 
 
         // function update() {
