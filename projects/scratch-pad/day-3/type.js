@@ -14,10 +14,11 @@
  */
 function isArray(value) {
     // YOUR CODE BELOW HERE //
-    
-    
-    
-    
+
+    var result;
+    (Array.isArray(value)) ? (result = true) : (result = false);
+    return result;
+
     // YOUR CODE ABOVE HERE //
 }
 
@@ -31,10 +32,19 @@ function isArray(value) {
  */
 function isObject(value) {
     // YOUR CODE BELOW HERE //
-    
-    
-    
-    
+
+   if (typeof value !== 'object') {
+        return false;
+    } else if (value === null) {
+        return false;
+    } else if (Array.isArray(value)) {
+        return false;
+    } else if (value instanceof Date) {
+        return false;
+    } else {
+        return true;
+    }
+
     // YOUR CODE ABOVE HERE //
 }
 
@@ -46,10 +56,17 @@ function isObject(value) {
  */
 function isCollection(value) {
     // YOUR CODE BELOW HERE //
-    
-    
-    
-    
+
+    if (isObject(value)) {
+        return true;
+    } else if (isArray(value)) {
+        return true;
+    } else {
+        return false;
+    }
+
+
+
     // YOUR CODE ABOVE HERE //
 }
 
@@ -71,18 +88,31 @@ function isCollection(value) {
  *    typeOf(134) -> "number"
  *    typeOf("javascript") -> "string"
  *    typeOf([1,2,3]) -> "array"
- */ 
+ */
 function typeOf(value) {
     // YOUR CODE BELOW HERE //
     
-    
-    
-    
+    if (isObject(value)) {
+        return "object";
+    } else if (isArray(value)) {
+         return "array"
+    } else if (value === null) {
+        return "null"
+    } else if (value instanceof Date) {
+        return "date"
+    } else {
+        return typeof value;
+    }
+       
+
+
+
+
     // YOUR CODE ABOVE HERE //
 }
 
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
-if((typeof process !== 'undefined') &&
+if ((typeof process !== 'undefined') &&
     (typeof process.versions.node !== 'undefined')) {
     // here, export any references you need for tests //
     module.exports.isArray = isArray;

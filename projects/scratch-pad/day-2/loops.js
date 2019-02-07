@@ -14,7 +14,11 @@ function printArrayValues(array) {
   // YOUR CODE BELOW HERE //
   
   
+  for (var i = 0; i < array.length; i++) {
+    console.log(array[i]);
+  }
   
+ 
   
   // YOUR CODE ABOVE HERE //
 }
@@ -26,7 +30,9 @@ function printArrayValues(array) {
 function printArrayValuesInReverse(array) {
   // YOUR CODE BELOW HERE //
   
-  
+  for (var i = array.length -1; i >= 0; i--) {
+    console.log(array[i]);
+  }
   
   
   // YOUR CODE ABOVE HERE //
@@ -38,9 +44,12 @@ function printArrayValuesInReverse(array) {
 function getObjectKeys(object) {
   // YOUR CODE BELOW HERE //
   
+  var keys = [];
+  for (var key in object) {
+    keys.push(key); 
+  }
   
-  
-  
+  return keys;
   // YOUR CODE ABOVE HERE //
 }
 
@@ -51,6 +60,10 @@ function getObjectKeys(object) {
 function printObjectKeys(object) {
   // YOUR CODE BELOW HERE //
   
+  for (var key in object) {
+    console.log(key);
+    
+  }
   
   
   
@@ -63,9 +76,12 @@ function printObjectKeys(object) {
 function getObjectValues(object) {
   // YOUR CODE BELOW HERE //
   
+  var valueArr = [];
+  for (var key in object) {
+    valueArr.push(object[key]);
+  }
   
-  
-  
+  return valueArr;
   // YOUR CODE ABOVE HERE //
 }
 
@@ -76,7 +92,9 @@ function getObjectValues(object) {
 function printObjectValues(object) {
   // YOUR CODE BELOW HERE //
   
-  
+  for (var key in object) {
+    console.log(object[key]);
+  }
   
   
   // YOUR CODE ABOVE HERE //
@@ -88,9 +106,12 @@ function printObjectValues(object) {
 function getObjectLength(object) {
   // YOUR CODE BELOW HERE //
   
+  var num = 0;
+  for (var key in object) {
+    num += 1;
+  }
   
-  
-  
+  return num;
   // YOUR CODE ABOVE HERE //
 }
 
@@ -101,8 +122,16 @@ function getObjectLength(object) {
 function printObjectValuesInReverse(object) {
   // YOUR CODE BELOW HERE //
   
+  /*var arr1 = [];
+  for (var key in object) {
+    arr1.push(object[key]);
+  }
   
+  for (var i = arr1.length -1; i >= 0; i--) {
+    console.log(arr1[i]);
+  }*/
   
+  printArrayValuesInReverse(getObjectValues(object));
   
   // YOUR CODE ABOVE HERE //
 }

@@ -106,7 +106,7 @@ function endsWith(string, char) {
 
     if (string[string.length -1] === char.toUpperCase()) {
         return true;
-    } else if (string[string.length -1] === char.toLowerCase()) {
+    } else if(string[string.length -1] === char.toLowerCase()) {
         return true;
     } else {
         return false;
