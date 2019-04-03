@@ -115,8 +115,16 @@ function profileInfo(object) {
 
 function maybeNoises(object) {
 
+    if (object && object.noises) {
+        if (Array.isArray(object.noises)) {
+            if (object.noises.length > 0) {
+                return object.noises.join(" ");
+            }
+        }
+        
+    }
     
-
+    return "there are no noises";
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -124,7 +132,16 @@ function maybeNoises(object) {
 //////////////////////////////////////////////////////////////////////
 
 function hasWord(string, word) {
-
+    
+    let arr = string.split(" ");
+    
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] === word) {
+            return true;
+        }
+    }
+    
+    return false;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -132,6 +149,9 @@ function hasWord(string, word) {
 //////////////////////////////////////////////////////////////////////
 
 function addFriend(name, object) {
+    
+    object.friends.push(name);
+    return object;
 
 }
 
@@ -140,15 +160,30 @@ function addFriend(name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function isFriend(name, object) {
-
+    
+    if (object.friends) {
+        for (let i = 0; i < object.friends.length; i++) {
+            if (name === object.friends[i]) {
+                return true;
+            }
+        }
+    }
+    
+    return false;
 }
-
 //////////////////////////////////////////////////////////////////////
 // Function 13 - Non-Friends /////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
 function nonFriends(name, array) {
-
+    
+    let nonFriend = [];
+    for (let i = 0; i < array.length; i++) {
+        if (name === array[i].friends) {
+            nonFriend.push(array[i].friends)
+        }
+        return nonFriend;
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
