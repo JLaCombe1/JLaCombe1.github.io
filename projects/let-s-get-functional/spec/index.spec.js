@@ -91,7 +91,7 @@ describe('Let\'s Get Functional', function(){
 
     it('should find average balance of customers', function () {
       const avg = averageBalance(data);
-      const test = avg < 2240.26 && avg > 2240.24;
+      const test = avg <= 2240.26 && avg >= 2240.24;
       expect(test).to.equal(true);
     });
   });
