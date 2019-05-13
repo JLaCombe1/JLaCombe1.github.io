@@ -19,114 +19,205 @@ var _ = require("lodown-jlacombe1");
  *    npm start --prefix ./projects/let-s-get-functional
  */
 var maleCount = function(array) {
-
-
-  let maleGender = _.filter(array, function(elt) {
-    return elt.gender === "male";
-  });
-  return maleGender.length;
+    var arr = _.filter(array, function(val, loc, col){
+        if (array[loc].gender === "male"){
+            return true;
+        }else{
+            return false;
+        }
+    });
+    return arr.length;
 };
 
 var femaleCount = function(array) {
-
-
-  let femaleGender = _.filter(array, function(elt) {
-    return elt.gender === "female";
-  });
-  return femaleGender.length;
+    var arr = _.filter(array, function(val, loc, col){
+        if (array[loc].gender === "female"){
+            return true;
+        }else{
+            return false;
+        }
+    });
+    return arr.length;
 };
 
+var oldestCustomer = function(array){
+    var ages = _.map(array, function(elt, i, array) {
+        return elt.age;
+    });
+    var oldest = Math.max(...ages);
+    var oldestName;
+    _.each(array, function(elt, i, array) {
+      if (elt.age === oldest) {
+        oldestName = elt.name;
+      }
+    });
+    return oldestName;
+};
 
-var oldestCustomer = function(array) {
-  
-  let ages = []
-  _.map(array, function(elt, i, array) {
-    ages.push(elt.age);
+var youngestCustomer = function(array){
+    var ages = _.map(array, function(elt, i, array) {
+        return elt.age;
+    });
+    var youngest = Math.min(...ages);
+    var youngestName;
+    _.each(array, function(elt, i, array) {
+      if (elt.age ===youngest) {
+        youngestName = elt.name;
+      }
+    });
+    return youngestName;
+};
+
+var averageBalance = function(array){
+    var balances = [];
+ 
+    _.each(array, function(elt, i, array) {
+        balances.push(elt.balance);
+    });
+ 
+    var balanceNumbers = [];
+ 
+    _.each(balances, function(elt, i , array) {
+        balanceNumbers.push(Number(balances[i].replace('$','').replace(',', '')));
+    });
+ 
+    var balanceTotal = 0;
+ 
+    _.each(balanceNumbers, function(elt, i, array) {
+        balanceTotal += elt;
+     
+    });
+ 
+    return balanceTotal / balances.length;
+};
+
+var firstLetterCount = function(array, letter){
+    var arr = _.filter(array, function(val, loc, col){
+        if(array[loc].name.charAt(0).toUpperCase() === letter.toUpperCase()){
+            return true;
+        }else if(array[loc].name.charAt(0).toLowerCase() === letter.toUpperCase()){
+            return true;
+        }else{
+            return false;
+        }
+    });
+    
+    return arr.length;
+};
+
+var friendFirstLetterCount = function(array, customer, letter){
+    var names = 0;
+    var friendsList = [];
+   
+    _.each(array, function(elt, i, array) {
+      if (elt.name === customer)  {
+        friendsList = elt.friends;
+      }
+    });
+ 
+    _.each(friendsList, function(elt, i, array) {
+      if (elt.name[0] === letter.toUpperCase() || elt.name[0] === letter.toLowerCase()) {
+        names++;
+      }
+    });
+ 
+    return names;
+};
+
+var friendsCount = function(array, name){
+    let haveFriend = [];
+   
+    _.each(array, function(person, loc, personList) {
+        _.each(person.friends, function(friend, loc2, friendList) {
+            if (friend.name === name) {
+                haveFriend.push(person.name);
+            }
+        });
+    });
+   
+    return haveFriend;
+};
+
+var topThreeTags = function(array){
+    var topThree = [];
+  var allTags = [];
+ 
+  _.each(array, function(person) {
+    _.each(person.tags, function(tag) {
+      allTags.push(tag);
+    });
   });
-  
-  var oldestNumber = Math.max(...ages);
-  let oldestName;
-  
-  _.each(array, function(elt, i, array) {
-    if (elt.age === oldestNumber) {
-      oldestName = elt.name;
+ 
+  var getCount = function(array) {
+    var counts = {};
+    for (var i = 0, len = array.length; i < len; i++) {
+      var word = array[i];
+ 
+      if (counts[word] === undefined) {
+        counts[word] = 1;
+      }
+      else {
+        counts[word] = counts[word] + 1;
+      }
     }
-  });
-  
-  return oldestName;
-  
-}
-var youngestCustomer = function(array) {
-  
-  let ages = []
-  _.map(array, function(elt, i, array) {
-    ages.push(elt.age);
-  });
-  
-  var youngestNumber = Math.min(...ages);
-  let youngestName;
-  
-  _.each(array, function(elt, i, array) {
-    if (elt.age === youngestNumber) {
-      youngestName = elt.name;
+    return counts;
+  };
+ 
+  const counts = getCount(allTags);
+ 
+ 
+  var most = function(array) {
+    var compare = 0;
+    var mostFrequent;
+    for (var i = 0, len = array.length; i < len; i++) {
+      var word = array[i];
+ 
+      if (counts[word] > compare) {
+        compare = counts[word];
+        mostFrequent = array[i];
+      }
     }
-  });
-  
-  return youngestName;
-  
-}
+    return mostFrequent;
+  };
+ 
+  for (var i = 0; i < 3; i++) {
+    var topWord = most(allTags);
+    topThree.push(topWord);
+    allTags = allTags.filter(function(e) { return e !== topWord; });
+  }
+ 
+  return topThree;
+};
 
-var averageBalance = function(array) {
-
-  let balances = [];
-
-  _.each(array, function(elt, i, array) {
-    balances.push(elt.balance);
-  })
-
-  let balanceNumbers = [];
-
-  _.each(array, function(elt, i, array) {
-    balanceNumbers.push(Number(balances[i].replace("$", "").replace(",", "")));
-  });
-
-
-  let total = 0;
-
-  _.each(balanceNumbers, function(elt, i, array) {
-    total += elt;
-  });
-
-  return Math.round(100 * (total / balances.length)) / 100;
-
-
-}
-
-
-
-var firstLetterCount = function(array, letter) {
-  
-  let count = [];
-  
-  _.filter(array, function(elt, i, array) {
-      if(elt.name[0] === letter.toUpperCase() || elt.name[0] === letter.toLowerCase()) {
-         count.push(elt.name)
-    };
-  });
-  
-  return count.length;
-  
-}
-
-var friendFirstLetterCount = function(array, customer, letter) {
-  
-}
-
-var friendsCount;
-
-var topThreeTags;
-
-var genderCount;
+var genderCount = function(array){
+    var object = {};
+    var male = _.filter(array, function(val, loc, col){
+        if(array[loc].gender === "male"){
+            return true; 
+        }
+    });
+    
+    object.male = male.length;
+    
+    var female = _.filter(array, function(val, loc, col){
+        if(array[loc].gender === "female"){
+            return true;   
+        }
+    });
+    
+    object.female = female.length;
+    
+    var trans = _.filter(array, function(val, loc, col){
+        if(array[loc].gender === "transgender"){
+            return true;
+        }
+    });
+    
+    object.transgender = trans.length;
+    
+    
+    return object;
+};
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
